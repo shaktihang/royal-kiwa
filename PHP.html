@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Sakela Kiwa - Online Ticket Booking</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('download.png'); /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            padding: 30px;
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            width: 60%;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            color: #333;
+            margin-top: 6px;
+        }
+
+        input[type="number"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .contact-info {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .select-option {
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .route-option {
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Royal Sakela Kiwa Online Ticket Booking</h1>
+
+    <div class="form-container">
+        <form action="done.html" method="POST" id="ticket-form">
+            <!-- Route Selection -->
+            <div class="form-group">
+                <label for="route">Select Route:</label>
+                <select id="route" name="route" class="route-option" required>
+                    <option value="">--Select Route--</option>
+                    <option value="Kiwa-Itahari">Kiwa → Itahari (2600 NPR)</option>
+                    <option value="Kiwa-Dharan">Kiwa → Dharan (2500 NPR)</option>
+                    <option value="Kiwa-Gaighat">Kiwa → Gaighat (2400 NPR)</option>
+                    <option value="Itahari-Kiwa">Itahari → Kiwa (2600 NPR)</option>
+                    <option value="Dharan-Kiwa">Dharan → Kiwa (2500 NPR)</option>
+                    <option value="Gaighat-Kiwa">Gaighat → Kiwa (2400 NPR)</option>
+                </select>
+            </div>
+
+            <!-- Departure Time -->
+            <div class="form-group">
+                <label for="departure-time">Departure Time:</label>
+                <input type="text" id="departure-time" value="4:00 AM" disabled class="select-option">
+            </div>
+
+            <!-- Ticket Price -->
+            <div class="form-group">
+                <label for="price">Ticket Price (in NPR):</label>
+                <input type="text" id="price" name="price" class="select-option" disabled>
+            </div>
+
+            <!-- Passenger Details -->
+            <div class="form-group">
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required class="select-option">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter your phone number" required class="select-option">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address (optional):</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email (optional)" class="select-option">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="3" placeholder="Enter your address" required class="select-option"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="tickets">Number of Tickets:</label>
+                <input type="number" id="tickets" name="tickets" min="1" max="10" required class="select-option">
+            </div>
+
+            <!-- Payment Method -->
+            <div class="form-group">
+                <label for="payment-method">Payment Method:</label>
+                <select id="payment-method" name="payment-method" class="select-option" required>
+                    <option value="">--Select Payment Method--</option>
+                    <option value="esewa">eSewa</option>
+                    <option value="cash-on-arrival">Cash on Arrival</option>
+                </select>
+            </div>
+
+            <!-- eSewa ID & Screenshot Upload -->
+            <div class="form-group" id="esewa-id-container" style="display: none;">
+                <label for="esewa-id">eSewa ID:</label>
+                <input type="text" id="esewa-id" value="9840986580" disabled class="select-option">
+                <label for="screenshot">Upload eSewa Payment Screenshot:</label>
+                <input type="file" id="screenshot" name="screenshot" accept="image/*" class="select-option">
+            </div>
+
+            <button type="submit" class="submit-btn">Book Tickets</button>
+        </form>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p><strong>Phone:</strong> 9840986580</p>
+        <p><strong>Address:</strong> Kiwa, Khotang</p>
+        <p>If you have any questions or need assistance, feel free to contact us.</p>
+    </div>
+
+    <!-- JavaScript to update price based on selected route and display eSewa ID -->
+    <script>
+        // Update price based on selected route
+        document.getElementById('route').addEventListener('change', function() {
+            var route = this.value;
+            var priceInput = document.getElementById('price');
+
+            if (route === 'Kiwa-Itahari' || route === 'Itahari-Kiwa') {
+                priceInput.value = '2600';
+            } else if (route === 'Kiwa-Dharan' || route === 'Dharan-Kiwa') {
+                priceInput.value = '2500';
+            } else if (route === 'Kiwa-Gaighat' || route === 'Gaighat-Kiwa') {
+                priceInput.value = '2400';
+            } else {
+                priceInput.value = '';
+            }
+        });
+
+        // Show eSewa ID and screenshot upload if eSewa is selected
+        document.getElementById('payment-method').addEventListener('change', function() {
+            var paymentMethod = this.value;
+            var esewaIdContainer = document.getElementById('esewa-id-container');
+
+            if (paymentMethod === 'esewa') {
+                esewaIdContainer.style.display = 'block';
+            } else {
+                esewaIdContainer.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
